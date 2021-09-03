@@ -1,24 +1,49 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0);
+  const [comment, setComment] = useState([]);
+
+  let myRef = React.createRef();
+
+  let handler = () => {
+    let currentCount = count;
+    currentCount++;
+    setCount(currentCount);
+  }
+
+  let addComment = () => {
+    let commentValue = myRef.current.value;
+    let comments = [...comment, commentValue];
+    setComment(comments);
+    myRef.current.value='';
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>State</h1>
+      <div>
+        <button onClick={handler}>This button changes state</button>
+      </div>
+      <div>
+        {count % 2 === 0 ? 'even' : 'odd'}
+      </div>
+      <div>
+        {count}
+      </div>
+      <div>
+        <textarea ref={myRef}></textarea>
+      </div>
+      <div>
+        <button onClick={addComment}>Add comment</button>
+      </div>
+      <div>
+        <ul>
+          {comment.map( (item, index) => <li key={index.toString()}>{item}</li>)}
+        </ul>
+      </div>
+    </>
   );
 }
 

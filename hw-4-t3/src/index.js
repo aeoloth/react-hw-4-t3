@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Ccomp from './Ccomp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <hr/>
+    <Ccomp/>
   </React.StrictMode>,
   document.getElementById('root')
 );
